@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCP Fundamentals Presentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Google Cloud Inspired Color Palette */
+        :root {
+            --gcp-blue: #4285F4;
+            --gcp-green: #34A853;
+            --gcp-yellow: #FBBC05;
+            --gcp-red: #EA4335;
+            --text-dark: #202124; /* Dark gray for text, Google uses this */
+            --text-medium: #5f6368; /* Medium gray for less emphasis */
+            --text-light: #80868b;  /* Light gray for footers/secondary info */
+            --bg-light-gray: #f8f9fa; /* Page background */
+            --bg-slide: #ffffff;     /* Slide background */
+            --border-color: #dadce0; /* Border color, Google-like */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif; /* Inter is a clean, modern font */
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light-gray);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-dark);
+        }
+        .slide-container {
+            width: 100%;
+            max-width: 900px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .slide {
+            background-color: var(--bg-slide);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 40px; /* Increased padding */
+            margin-bottom: 25px; /* Increased space */
+            box-shadow: 0 1px 3px 0 rgba(60,64,67,0.302), 0 4px 8px 3px rgba(60,64,67,0.149); /* Google-like shadow */
+            min-height: 520px; /* Slightly increased min height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .slide h2 { /* Main slide title */
+            font-size: 2.5rem; /* Larger main titles */
+            font-weight: 700; /* Bolder */
+            color: var(--gcp-blue); /* Google Blue for main titles */
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .slide h3 { /* Subtitle or secondary heading */
+            font-size: 1.6rem; /* Slightly larger */
+            font-weight: 500;
+            color: var(--text-dark); /* Darker for better contrast */
+            margin-top: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .slide ul {
+            list-style-type: disc;
+            margin-left: 30px;
+            margin-bottom: 20px; /* Increased spacing */
+            color: var(--text-medium);
+        }
+        .slide li {
+            margin-bottom: 10px; /* Increased spacing */
+            font-size: 1.15rem; /* Slightly larger */
+            line-height: 1.7; /* Improved line height */
+        }
+        .slide p {
+            color: var(--text-medium);
+            font-size: 1.15rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        .slide .visual-idea, .slide .image-container { /* Combined for consistency */
+            font-style: italic;
+            color: var(--text-medium);
+            background-color: #e8f0fe; /* Light blue background, complements GCP blue */
+            padding: 15px; /* Increased padding */
+            border-radius: 6px; /* Slightly more rounded */
+            margin-top: 25px;
+            font-size: 1rem; /* Adjusted size */
+            border-left: 4px solid var(--gcp-yellow); /* Google Yellow for accent */
+            text-align: center; /* Center image/placeholder */
+        }
+        .slide .image-container img {
+            max-width: 100%;
+            max-height: 300px; /* Max height for the image */
+            border-radius: 4px;
+            margin: 0 auto; /* Center the image if it's smaller than container */
+            display: block;
+        }
+        .slide strong { /* For emphasizing text within paragraphs/lists */
+            color: var(--text-dark);
+            font-weight: 600; /* Standard bold */
+        }
+        /* Specific strong elements for categories or highlights */
+        .slide .text-gcp-blue { color: var(--gcp-blue); font-weight: 600; }
+        .slide .text-gcp-green { color: var(--gcp-green); font-weight: 600; }
+        .slide .text-gcp-yellow { color: var(--gcp-yellow); font-weight: 600; }
+        .slide .text-gcp-red { color: var(--gcp-red); font-weight: 600; }
+
+        .slide-footer {
+            margin-top: auto;
+            padding-top: 25px;
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 25px;
+                min-height: auto;
+            }
+            .slide h2 {
+                font-size: 2rem;
+            }
+            .slide h3 {
+                font-size: 1.4rem;
+            }
+            .slide ul {
+                margin-left: 20px;
+            }
+            .slide li, .slide p {
+                font-size: 1.05rem;
+            }
+            .slide .image-container img {
+                max-height: 200px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="slide-container">
+
+        <div class="slide" id="slide1">
+            <h2>Introduction to Google Cloud Platform (GCP) Fundamentals</h2>
+            <h3><em>Unlocking the Power of Google's Infrastructure</em></h3>
+            <p class="text-center mt-8 text-xl">Juan Guillermo Gómez</p>
+            <p class="text-center mt-2 text-lg">@jggomezt</p>
+            <div class="image-container">
+                <img src="https://placehold.co/800x300/4285F4/ffffff?text=GCP+Fundamentals" alt="GCP Fundamentals Title Image">
+            </div>
+            <div class="slide-footer">Slide 1</div>
+        </div>
+
+        <div class="slide" id="slide2">
+            <h2>First Things First: What is Cloud Computing?</h2>
+            <ul>
+                <li><strong>On-demand availability of IT resources</strong> (like servers, storage, databases, networking, software, analytics, intelligence) over the Internet.</li>
+                <li><strong>Pay-as-you-go pricing:</strong> You only pay for the services you consume.</li>
+                <li><strong>Eliminates the need for physical infrastructure:</strong> No need to buy, own, and maintain physical data centers and servers.</li>
+                <li><strong>Key Characteristics:</strong>
+                    <ul>
+                        <li><strong class="text-gcp-green">Scalability:</strong> Easily scale resources up or down based on demand.</li>
+                        <li><strong class="text-gcp-green">Elasticity:</strong> Automatically adjust resources.</li>
+                        <li><strong class="text-gcp-green">Reliability:</strong> Often provides built-in redundancy and fault tolerance.</li>
+                        <li><strong class="text-gcp-green">Global Reach:</strong> Access resources from anywhere with an internet connection.</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="image-container">
+                 <img src="https://github.com/jggomez/GCP-Presentation/blob/main/resources/cloudvsonpremise.png?raw=true" alt="Cloud vs On-Premise Diagram">
+            </div>
+            <div class="slide-footer">Slide 2</div>
+        </div>
+
+        <div class="slide" id="slide3">
+            <h2>What is Google Cloud Platform (GCP)?</h2>
+            <ul>
+                <li>A suite of <strong>cloud computing services</strong> offered by Google.</li>
+                <li>Runs on the <strong>same global infrastructure</strong> that powers Google's popular end-user products like Google Search, Gmail, and YouTube.</li>
+                <li>Provides:
+                    <ul>
+                        <li><strong>Infrastructure as a Service (IaaS):</strong> Access to fundamental computing resources like virtual machines and storage.</li>
+                        <li><strong>Platform as a Service (PaaS):</strong> A platform for developing, running, and managing applications without the complexity of building and maintaining the infrastructure.</li>
+                        <li><strong>Serverless Computing:</strong> Build and run applications and services without thinking about servers.</li>
+                    </ul>
+                </li>
+                <li>Enables businesses of all sizes to build, deploy, and scale applications, websites, and services efficiently and cost-effectively.</li>
+            </ul>
+            <div class="image-container">
+                <img src="https://raw.githubusercontent.com/jggomez/GCP-Presentation/main/resources/Gemini_Generated_Image_ecl5afecl5afecl5.png" alt="Google Cloud Platform Abstract Representation">
+            </div>
+            <div class="slide-footer">Slide 3</div>
+        </div>
+
+        <div class="slide" id="slide4">
+            <h2>Powering Your Applications: GCP's Global Infrastructure</h2>
+            <ul>
+                <li><strong>Regions:</strong> Independent geographic areas around the world (e.g., <code>us-central1</code> in Iowa, <code>europe-west2</code> in London, <code>asia-northeast1</code> in Tokyo).
+                    <ul><li>Each region is a collection of zones.</li></ul>
+                </li>
+                <li><strong>Zones:</strong> Isolated locations within a region. Think of them as individual data centers.
+                    <ul><li>Deploying applications across multiple zones in a region provides high availability and fault tolerance.</li></ul>
+                </li>
+                <li><strong>Global Network:</strong> A high-speed, private, software-defined fiber optic network connecting all Google data centers.</li>
+                <li><strong>Edge Locations (Points of Presence - PoPs):</strong> Distributed locations worldwide that bring GCP services closer to end-users (for Cloud CDN, Cloud Interconnect).</li>
+            </ul>
+            <b><a href="https://cloud.google.com/about/locations" target="_blank">More Info [Locations]</a></b>
+            <div class="image-container">
+                <img src="https://github.com/jggomez/GCP-Presentation/blob/main/resources/networking.jpeg?raw=true" alt="GCP Global Infrastructure Map">
+            </div>
+            <div class="slide-footer">Slide 4</div>
+        </div>
+
+        <div class="slide" id="slide5">
+            <h2>The Building Blocks: Core GCP Service Categories</h2>
+            <p>GCP offers a vast portfolio of services. We'll focus on these fundamental categories:</p>
+            <ul class="list-disc list-inside text-xl space-y-3 mt-4">
+                <li><strong class="text-gcp-blue">Compute:</strong> Where your applications run.</li>
+                <li><strong class="text-gcp-green">Storage & Databases:</strong> Where your data is stored and managed.</li>
+                <li><strong class="text-gcp-yellow">Networking:</strong> How your resources connect and are secured.</li>
+                <li><strong class="text-purple-600">Big Data & Analytics:</strong> Tools to process and analyze large datasets. (Using a distinct purple for variety)</li>
+                <li><strong class="text-gcp-red">AI & Machine Learning:</strong> Services to build intelligent applications.</li>
+            </ul>
+            <div class="image-container">
+                <img src="https://github.com/jggomez/GCP-Presentation/blob/main/resources/gcp_services.jpeg?raw=true" alt="GCP Service Categories Diagram">
+            </div>
+            <div class="slide-footer">Slide 5</div>
+        </div>
+
+        <div class="slide" id="slide6">
+            <h2>Compute: The Brains of Your Operations</h2>
+            <ul>
+                <li><strong>Compute Engine (IaaS):</strong> Virtual Machines (VMs). Highly customizable.</li>
+                <li><strong>Google Kubernetes Engine (GKE) (PaaS/Containers):</strong> Managed Kubernetes for containerized applications.</li>
+                <li><strong>App Engine (PaaS):</strong> Fully managed platform for building and running applications (supports many languages).</li>
+                <li><strong>Cloud Functions (Serverless/FaaS):</strong> Event-driven code execution. No servers to manage.</li>
+                <li><strong>Cloud Run (Serverless/Containers):</strong> Run stateless containers in a fully managed environment.</li>
+            </ul>
+            <div class="image-container">
+                <img src="https://github.com/jggomez/GCP-Presentation/blob/main/resources/gcp_services_2.jpeg?raw=true" alt="GCP Compute Services Icons">
+            </div>
+            <div class="slide-footer">Slide 6</div>
+        </div>
+
+        <div class="slide" id="slide7">
+            <h2>Storage & Databases: Where Your Data Lives</h2>
+            <ul>
+                <li><strong>Cloud Storage (Object Storage):</strong> Scalable storage for any type of data (files, backups). Various storage classes.</li>
+                <li><strong>Persistent Disk (Block Storage):</strong> Network storage for Compute Engine VMs (SSD or HDD).</li>
+                <li><strong>Filestore (File Storage):</strong> Managed NFS file storage.</li>
+                <li><strong>Relational Databases:</strong>
+                    <ul>
+                        <li><strong>Cloud SQL:</strong> Managed MySQL, PostgreSQL, SQL Server.</li>
+                        <li><strong>Cloud Spanner:</strong> Globally distributed, strongly consistent relational database.</li>
+                    </ul>
+                </li>
+                <li><strong>NoSQL Databases:</strong>
+                    <ul>
+                        <li><strong>Cloud Bigtable:</strong> Petabyte-scale, wide-column NoSQL (HBase compatible).</li>
+                        <li><strong>Firestore:</strong> Flexible NoSQL document database for web/mobile (real-time sync).</li>
+                    </ul>
+                </li>
+                <li><strong>(Optional Mention) Memorystore:</strong> Managed Redis and Memcached for caching.</li>
+            </ul>
+            <div class="image-container">
+                <img src="https://github.com/jggomez/GCP-Presentation/blob/main/resources/storage.png?raw=true" alt="GCP Storage and Database Icons">
+            </div>
+            <div class="slide-footer">Slide 7</div>
+        </div>
+
+        <div class="slide" id="slide8">
+            <h2>Networking: Connecting and Securing Your World</h2>
+            <ul>
+                <li><strong>Virtual Private Cloud (VPC) Network:</strong> Logically isolated network. Global by default. Firewall rules.</li>
+                <li><strong>Cloud Load Balancing:</strong> Distribute traffic for high availability and performance.</li>
+                <li><strong>Cloud DNS:</strong> Managed authoritative DNS service.</li>
+                <li><strong>Cloud CDN (Content Delivery Network):</strong> Accelerate content delivery.</li>
+                <li><strong>Connectivity Options:</strong> Cloud Interconnect (dedicated), Cloud VPN (IPsec).</li>
+            </ul>
+            <div class="image-container">
+                <img src="https://github.com/jggomez/GCP-Presentation/blob/main/resources/networking_services.png?raw=true" alt="GCP Networking Diagram">
+            </div>
+            <div class="slide-footer">Slide 8</div>
+        </div>
+
+        <div class="slide" id="slide9">
+            <h2>Big Data & Analytics: Turning Data into Value</h2>
+            <ul>
+                <li><strong>BigQuery:</strong> Serverless, scalable data warehouse. Analyze petabytes with SQL. BigQuery ML.</li>
+                <li><strong>Dataflow:</strong> Managed stream and batch data processing.</li>
+                <li><strong>Dataproc:</strong> Managed Apache Spark and Hadoop service.</li>
+                <li><strong>Pub/Sub:</strong> Real-time messaging for event ingestion and delivery.</li>
+                <li><strong>(Optional Mention) Looker Studio:</strong> Data visualization and reporting.</li>
+            </ul>
+            <div class="image-container">
+                <img src="https://github.com/jggomez/GCP-Presentation/blob/main/resources/bigdta_services.png?raw=true" alt="GCP Big Data Analytics Flow Diagram">
+            </div>
+            <div class="slide-footer">Slide 9</div>
+        </div>
+
+        <div class="slide" id="slide10">
+            <h2>AI & Machine Learning: The Future, Today</h2>
+            <p>GCP provides a comprehensive suite of AI/ML tools:</p>
+            <ul>
+                <li><strong>Vertex AI:</strong> Unified MLOps platform (AutoML and custom training).</li>
+                <li><strong>Pre-trained APIs (Plug-and-Play AI):</strong>
+                    <ul>
+                        <li>Vision AI (image analysis)</li>
+                        <li>Speech-to-Text & Text-to-Speech</li>
+                        <li>Natural Language AI (text analysis)</li>
+                        <li>Translation AI</li>
+                    </ul>
+                </li>
+                <li><strong>Specialized Hardware:</strong> Cloud TPUs (Tensor Processing Units) for ML acceleration.</li>
+            </ul>
+            <div class="image-container">
+                <img src="https://github.com/jggomez/GCP-Presentation/blob/main/resources/ai-services.png?raw=true" alt="GCP AI and Machine Learning Abstract">
+            </div>
+            <div class="slide-footer">Slide 10</div>
+        </div>
+
+        <div class="slide" id="slide11">
+            <h2>Why Choose GCP? Key Concepts & Benefits</h2>
+            <ul>
+                <li><strong class="text-gcp-blue">Scalability & Elasticity:</strong> Effortlessly scale from prototype to planet-scale.</li>
+                <li><strong class="text-gcp-green">Cost-Effectiveness:</strong> Pay-as-you-go, per-second billing, various discounts.</li>
+                <li><strong class="text-gcp-red">Security:</strong> Leverages Google's global secure infrastructure. Robust IAM. Default encryption.</li>
+                <li><strong class="text-gcp-yellow">Innovation:</strong> Access to cutting-edge AI/ML, data analytics, Kubernetes.</li>
+                <li><strong>Global Reach & Reliability:</strong> Deploy closer to users. High availability.</li>
+                <li><strong>Openness & Flexibility:</strong> Commitment to open-source. Hybrid/multi-cloud support.</li>
+            </ul>
+            <div class="image-container">
+                <img src="https://github.com/jggomez/GCP-Presentation/blob/main/resources/gcp_benefits.jpeg?raw=true" alt="GCP Benefits Infographic">
+            </div>
+            <div class="slide-footer">Slide 11</div>
+        </div>
+
+        <div class="slide" id="slide12">
+            <h2>How Do You Manage GCP Resources?</h2>
+            <p>Multiple ways to interact with and manage GCP services:</p>
+            <ul>
+                <li><strong>Google Cloud Console:</strong> Web-based GUI.</li>
+                <li><strong>Cloud Shell:</strong> Browser-based interactive shell with gcloud CLI.</li>
+                <li><strong>gcloud CLI (Command Line Interface):</strong> Powerful command-line tool.</li>
+                <li><strong>Client Libraries:</strong> Language-specific libraries (Python, Java, Go, etc.).</li>
+                <li><strong>REST APIs:</strong> Direct HTTP interaction with services.</li>
+            </ul>
+            <div class="slide-footer">Slide 12</div>
+        </div>
+
+        <div class="slide" id="slide13">
+            <h2>Ready to Explore? Getting Started with GCP</h2>
+            <ul>
+                <li><strong>Google Cloud Free Tier:</strong> "Always Free" usage limits for many services.</li>
+                <li><strong>Free Trial Credits:</strong> Significant credits for new users (e.g., $300).</li>
+                <li><strong>Documentation & Learning Resources:</strong>
+                    <ul>
+                        <li>Google Cloud Documentation (guides, tutorials).</li>
+                        <li>Google Cloud Skills Boost (Qwiklabs for hands-on labs).</li>
+                        <li>Coursera, Pluralsight, etc.</li>
+                    </ul>
+                </li>
+                <li><strong>Google Cloud Certifications:</strong> Validate your skills (Associate, Professional).</li>
+            </ul>
+            <div class="slide-footer">Slide 13</div>
+        </div>
+
+        <div class="slide" id="slide14">
+            <h2>What Can You Build with GCP?</h2>
+            <p>GCP is versatile for a wide range of applications:</p>
+            <ul>
+                <li>Website and Application Hosting</li>
+                <li>Data Storage, Backup, and Archival</li>
+                <li>Big Data Processing and Analytics</li>
+                <li>Machine Learning Model Training and Serving</li>
+                <li>DevOps Automation and CI/CD Pipelines</li>
+                <li>Gaming Backends</li>
+                <li>Internet of Things (IoT) Solutions</li>
+                <li>Hybrid and Multi-Cloud Deployments</li>
+            </ul>
+            <div class="slide-footer">Slide 14</div>
+        </div>
+
+        <div class="slide" id="slide15">
+            <h2>GCP Fundamentals: Key Takeaways</h2>
+            <ul>
+                <li>GCP offers a comprehensive suite of <strong>powerful and scalable cloud services</strong> on Google's global infrastructure.</li>
+                <li>Core service categories: <strong>Compute, Storage & Databases, Networking, Big Data & Analytics, AI & ML.</strong></li>
+                <li>Key benefits: <strong>Scalability, cost-efficiency, security, innovation, global reliability.</strong></li>
+                <li>Interact via: <strong>Console, Cloud Shell, CLI, client libraries, APIs.</strong></li>
+                <li>Easy to start: <strong>Generous Free Tier and free trial credits.</strong></li>
+            </ul>
+            <div class="slide-footer">Slide 15</div>
+        </div>
+
+        <div class="slide" id="slide16">
+            <h2>Questions?</h2>
+            <h3 class="mt-12">Juan Guillermo Gómez</h3>
+            <h3 class="mt-12">@jggomezt</h3>
+            <div class="image-container">
+                <img src="https://placehold.co/600x300/dadce0/202124?text=Q%26A+-+Thank+You" alt="Q&A Thank You Slide">
+            </div>
+            <div class="slide-footer">Slide 16</div>
+        </div>
+
+    </div>
+
+    </body>
+</html>
